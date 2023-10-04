@@ -7,7 +7,7 @@ export class ArtsController {
 
     static async getByID (req, res) {
         const id = req.params.id
-        res.send(await ArtModel.getByID({id}))
+        res.send(await ArtModel.getByID({id: id}))
     }
 
     static async getBySection (req, res) {
