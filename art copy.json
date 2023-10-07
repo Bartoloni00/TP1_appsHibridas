@@ -1,0 +1,122 @@
+[
+  {
+      "name": "Mona Lisa",
+      "description": "Retrato de una mujer con una sonrisa enigmática.",
+      "link": "https://www.louvre.fr/en/oeuvre-notices/mona-lisa-portrait-lisa-gherardini-wife-francesco-del-giocondo",
+      "img": "https://picsum.photos/400/225",
+      "section": "pinturas",
+      "price": 80000
+  },
+  {
+      "name": "La Noche Estrellada",
+      "description": "Paisaje nocturno con remolinos y estrellas brillantes.",
+      "link": "https://www.moma.org/collection/works/79802",
+      "img": "https://picsum.photos/400/225",
+      "section": "pinturas",
+      "price": 60000
+  },
+  {
+      "name": "Guernica",
+      "description": "Pintura mural que representa el bombardeo de Guernica durante la Guerra Civil Española.",
+      "link": "https://www.museoreinasofia.es/en/collection/artwork/guernica",
+      "img": "https://picsum.photos/400/225",
+      "section": "pinturas",
+      "price": 70000
+  },
+  {
+      "name": "David",
+      "description": "Escultura de un hombre joven en mármol, representando al héroe bíblico David.",
+      "link": "https://www.galleriaaccademiafirenze.beniculturali.it/en/david/",
+      "img": "https://picsum.photos/400/225",
+      "section": "esculturas",
+      "price": 50000
+  },
+  {
+      "name": "El Pensador",
+      "description": "Escultura de un hombre sentado en una pose pensativa.",
+      "link": "https://www.musee-rodin.fr/en/collections/sculptures/thinker",
+      "img": "https://picsum.photos/400/225",
+      "section": "esculturas",
+      "price": 45000
+  },
+  {
+      "name": "Venus de Milo",
+      "description": "Estatua en mármol de Afrodita, la diosa del amor y la belleza.",
+      "link": "https://www.louvre.fr/en/oeuvre-notices/venus-de-milo",
+      "img": "https://picsum.photos/400/225",
+      "section": "esculturas",
+      "price": 55000
+  },
+  {
+      "name": "Migrant Mother",
+      "description": "Fotografía icónica de una madre migrante durante la Gran Depresión en Estados Unidos.",
+      "link": "https://www.loc.gov/pictures/item/2017760024/",
+      "img": "https://picsum.photos/400/225",
+      "section": "fotografias",
+      "price": 3000
+  },
+  {
+      "name": "Lunch Atop a Skyscraper",
+      "description": "Fotografía de trabajadores almorzando en una viga durante la construcción del Rockefeller Center en Nueva York.",
+      "link": "https://www.corbisimages.com/stock-photo/rights-managed/42-45207575/lunch-atop-a-skyscraper-1932",
+      "img": "https://picsum.photos/400/225",
+      "section": "fotografias",
+      "price": 2500
+  },
+  {
+      "name": "Afghan Girl",
+      "description": "Retrato de una joven afgana que se convirtió en un símbolo mundial de la guerra en Afganistán.",
+      "link": "https://www.nationalgeographic.com/magazine/national-geographic-magazine-100-best-pictures-of-the-year/article.html",
+      "img": "https://picsum.photos/400/225",
+      "section": "fotografias",
+      "price": 2000
+  },
+  {
+      "name": "Dípticos",
+      "description": "Colección de obras de arte digital creadas diariamente durante más de una década.",
+      "link": "https://www.beeple-collect.com/",
+      "img": "https://picsum.photos/400/225",
+      "section": "artedigital",
+      "price": 1500
+  },
+  {
+      "name": "CryptoPunks",
+      "description": "Colección de 10,000 personajes pixelados únicos en la blockchain Ethereum.",
+      "link": "https://www.larvalabs.com/cryptopunks",
+      "img": "https://picsum.photos/400/225",
+      "section": "artedigital",
+      "price": 1800
+  },
+  {
+      "name": "The First Ever Tweet",
+      "description": "La primera publicación en Twitter, creada por el cofundador de Twitter.",
+      "link": "https://twitter.com/jack/status/20",
+      "img": "https://picsum.photos/400/225",
+      "section": "artedigital",
+      "price": 1200
+  },
+  {
+      "name": "Tapiz de Bayeux",
+      "description": "Tapiz bordado que narra los eventos que llevaron a la conquista normanda de Inglaterra en el siglo XI.",
+      "link": "http://www.tapisserie-bayeux.fr/en/la-tapisserie/bayeux-tapestry",
+      "img": "https://picsum.photos/400/225",
+      "section": "artesanias",
+      "price": 3500
+  },
+  {
+      "name": "Quilts de Gee's Bend",
+      "description": "Quilts tradicionales hechos a mano por mujeres afroamericanas de Gee's Bend.",
+      "link": "https://www.soulsgrowndeep.org/gees-bend-quiltmakers",
+      "img": "https://picsum.photos/400/225",
+      "section": "artesanias",
+      "price": 3000
+  },
+  {
+      "name": "Arte en Papel",
+      "description": "Obras de arte intricadamente cortadas y enrolladas en papel para crear efectos 3D.",
+      "link": "http://www.artyulia.com/",
+      "img": "https://picsum.photos/400/225",
+      "section": "artesanias",
+      "price": 2800
+  }
+]

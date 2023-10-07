@@ -1,5 +1,5 @@
 ### Recuperar todas las obras de arte
-GET http://localhost:3333/arts
+GET http://localhost:3333/arts?section=pinturas&min=3500&max=60000
 
 ### Recuperar una obra de arte por su id
 GET http://localhost:3333/arts/651d35bce6190ce46a9a0264

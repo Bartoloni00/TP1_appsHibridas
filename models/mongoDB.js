@@ -4,8 +4,9 @@ const client = new MongoClient('mongodb+srv://bartoloni:bartoloni@cluster0.hrfhf
 const db = client.db('AH20232CP1')
 
 export class ArtModel {
-    static async getAll() {    
-        return await db.collection('arts').find().toArray()
+    static async getAll({filtros}) {    
+        console.log(filtros);
+        return await db.collection('arts').find(filtros).toArray()
     }
 
     static async getByID({id}){
@@ -14,11 +15,6 @@ export class ArtModel {
         } catch (error) {
             return {"message": 'Ocurrio un error al intentar obtener el documento'}
         }
-    }
-
-    static async getBySection({section}){
-        const filtro = section
-        return await db.collection('arts').find({section: filtro}).toArray()
     }
 
     static async createArt(producto){

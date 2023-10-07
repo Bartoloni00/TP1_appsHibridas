@@ -7,8 +7,6 @@ ArtRoutes.get('/arts/', ArtsController.listAll)// todas las obras de arte
 
 ArtRoutes.get('/arts/:id', ArtsController.getByID) // por id
 
-ArtRoutes.get('/arts/section/:section', ArtsController.getBySection) // filtrar por seccion
-
 ArtRoutes.post('/arts/', ArtsController.create)
 
 ArtRoutes.delete('/arts/:id', ArtsController.delete)
