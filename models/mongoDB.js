@@ -9,7 +9,11 @@ export class ArtModel {
     }
 
     static async getByID({id}){
-        return db.collection('arts').findOne({ _id: new ObjectId(id) })
+        try {
+            return db.collection('arts').findOne({ _id: new ObjectId(id) })
+        } catch (error) {
+            return {"message": 'Ocurrio un error al intentar obtener el documento'}
+        }
     }
 
     static async getBySection({section}){
@@ -27,9 +31,26 @@ export class ArtModel {
           }
         try {
             const art = await db.collection('arts').insertOne(newArt)
-            return art
+            newArt._id += art.insertedId 
+            return newArt
         } catch (error) {
             return {"message": `No se ha podido agregar la obra a la base de datos ${error}`}
         }
+    }
+
+    static async deleteArt({id}) {
+        try {
+            return await db.collection('arts').deleteOne({_id: new ObjectId(id)})
+        } catch (error) {
+            return {"message": 'Ocurrio un error al intentar eliminar el documento'}
+        }
+    }
+
+    static async replaceArt({id,producto}){
+        try {
+            return db.collection('arts').replaceOne({_id: new ObjectId(id)}, producto)
+        } catch (error) {
+            return {"message": `Ocurrio un error al intentar remplazar el documento`}
+        }        
     }
 }

@@ -46,11 +46,33 @@ export class ArtsController {
     }
 
     static async delete (req, res) {
-        
+        const id = req.params.id
+        ArtModel.deleteArt({id:id})
+        .then(deletedArt=>{
+            res.status(200).json({"message": `Obra de arte eliminada satisfactoriamente: ${deletedArt}`})
+        })
+        .catch(err=>{
+            res.status(500).json({"message": `Ocurrio un error al eliminar la obra de arte: ${err}`})
+        })
     }
 
     static async update (req, res) {
         
+    }
+
+    static async replace (req, res) {
+        const id = req.params.id
+        const newArt = {
+            "name": req.body.name,
+            "description": req.body.description,
+            "link": req.body.link ?? 'no link',
+            "img": req.body.img ?? 'no image',
+            "section":req.body.section 
+          }
+
+        ArtModel.replaceArt({id: id, producto: newArt})
+          .then(data => res.status(200).json({"message": `Obra de arte remplazada satisfactoriamente: ${id}`, data}))
+          .catch(err=>res.send(err))
     }
 }
 
