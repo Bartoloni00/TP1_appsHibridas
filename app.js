@@ -6,6 +6,7 @@ const port = 3333
 
 app.use(express.urlencoded({extended: true}))
 app.use('/',express.static('public'))
+app.use(express.json()) // esto es estrictamente necesario para que nuestra api pueda recibir JSONs
 
 app.use(ArtRoutes)
 

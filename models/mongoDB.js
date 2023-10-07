@@ -17,4 +17,19 @@ export class ArtModel {
         return await db.collection('arts').find({section: filtro}).toArray()
     }
 
+    static async createArt(producto){
+        const newArt = {
+            "name": producto.name,
+            "description": producto.description,
+            "link": producto.link,
+            "img": producto.img,
+            "section":producto.section 
+          }
+        try {
+            const art = await db.collection('arts').insertOne(newArt)
+            return art
+        } catch (error) {
+            return {"message": `No se ha podido agregar la obra a la base de datos ${error}`}
+        }
+    }
 }

@@ -26,6 +26,22 @@ export class ArtsController {
     }
 
     static async create (req, res) {
+        const newArt = {
+            "name": req.body.name,
+            "description": req.body.description,
+            "link": req.body.link,
+            "img": req.body.img,
+            "section":req.body.section 
+          }
+
+        ArtModel.createArt(newArt)
+        .then((createArt)=>{
+            res.status(201).json(createArt)
+        })
+        .catch(err=>{
+            console.log(err)
+            res.status(500).json({"message": "Error al intentar agregar una nueva obra de arte"})
+        })
         
     }
 
