@@ -53,4 +53,12 @@ export class ArtModel {
             return {"message": `Ocurrio un error al intentar remplazar el documento`}
         }        
     }
+
+    static async updateArt({id,producto}){
+        try { 
+            return await db.collection('arts').updateOne({ _id: new ObjectId(id) }, { $set: producto })
+        } catch (error) {
+            return {"message": `Ocurrio un error al intentar actualizar el documento`}
+        }
+    }
 }

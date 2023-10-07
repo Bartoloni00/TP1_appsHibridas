@@ -57,7 +57,20 @@ export class ArtsController {
     }
 
     static async update (req, res) {
-        
+        const id = req.params.id
+        const editArt = {
+            "name": req.body.name,
+            "description": req.body.description,
+            "link": req.body.link ?? 'no link',
+            "img": req.body.img ?? 'no image',
+            "section":req.body.section 
+          }
+        ArtModel.updateArt({id:id,producto:editArt})
+          .then(data => res.status(200).json({"message": `Obra de arte editada exitosamente: ${id}`, data}))
+          .catch(err => {
+            console.log(err)
+            res.json({"message": `ocurrio un error al editar la obra`, err})
+          })
     }
 
     static async replace (req, res) {

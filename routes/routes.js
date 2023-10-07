@@ -13,7 +13,7 @@ ArtRoutes.post('/arts/', ArtsController.create)
 
 ArtRoutes.delete('/arts/:id', ArtsController.delete)
 
-ArtRoutes.patch('/arts:id', ArtsController.update)
+ArtRoutes.patch('/arts/:id', ArtsController.update)
 
 ArtRoutes.put('/arts/:id', ArtsController.replace)
 export default ArtRoutes
