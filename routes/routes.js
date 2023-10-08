@@ -4,25 +4,32 @@ import { UserController } from '../controllers/Users.js'
 
 const ArtRoutes = express.Router()
 
-ArtRoutes.get('/arts/', ArtsController.listAll)// todas las obras de arte
+ArtRoutes.get('/', ArtsController.home)
 
-ArtRoutes.get('/arts/:id', ArtsController.getByID) // por id
+ArtRoutes.get('/arts/', ArtsController.listAll)
 
-ArtRoutes.post('/arts/', ArtsController.create)
+ArtRoutes.get('/arts/:id', ArtsController.getByID)
+
+// ArtRoutes.get('/arts/create', ArtsController.createView)
+ArtRoutes.post('/arts/create', ArtsController.create)
 
 ArtRoutes.delete('/arts/:id', ArtsController.delete)
 
-ArtRoutes.patch('/arts/:id', ArtsController.update)
+// ArtRoutes.get('/arts/update/:id', ArtsController.updateView)
+ArtRoutes.patch('/arts/update/:id', ArtsController.update)
 
+// ArtRoutes.put('/arts/replace/:id',ArtsController.replaceView)
 ArtRoutes.put('/arts/:id', ArtsController.replace)
 
 ArtRoutes.get('/users/', UserController.listAll)
 
 ArtRoutes.get('/users/:id', UserController.getByID)
 
+// ArtRoutes.get('/users/create', UserController.createView)
 ArtRoutes.post('/users/', UserController.create)
 
 ArtRoutes.delete('/users/:id', UserController.delete)
 
+// ArtRoutes.get('/users/create', UserController.updateView)
 ArtRoutes.patch('/users/:id', UserController.update)
 export default ArtRoutes

@@ -1,15 +1,16 @@
 import { UserModel } from "../models/userModel.js";
+import { userViews } from "../views/userViews.js";
 
 export class UserController {
     static async listAll(req, res){
         let filtros = req.query
-        res.send(await UserModel.getAll({filtros: filtros}))
+        res.send(await userViews.listAll({users: await UserModel.getAll({filtros: filtros})}))
     }
 
     static async getByID(req, res){
         const id = req.params.id
 
-        res.send(await UserModel.getByID({id: id}))
+        res.send(await userViews.getByID({user: await UserModel.getByID({id: id})}))
     }
     
     static async create(req, res){

@@ -1,14 +1,19 @@
 import { ArtModel } from "../models/artModel.js";
+import { ArtViews } from "../views/artViews.js";
 
 export class ArtsController {
+    static async home (req, res) {
+        res.send(await ArtViews.home())
+    }
+
     static async listAll (req, res) {
         let filtros = req.query
-        res.send(await ArtModel.getAll({filtros:filtros}))
+        res.send(await ArtViews.listAll({arts: await ArtModel.getAll({filtros:filtros})}))
     }
 
     static async getByID (req, res) {
         const id = req.params.id
-        res.send(await ArtModel.getByID({id: id}))
+        res.send(await ArtViews.getByID({art: await ArtModel.getByID({id: id})}))
     }
 
     static async create (req, res) {
