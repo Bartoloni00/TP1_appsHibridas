@@ -11,6 +11,13 @@ export class Components {
             <li class="nav-item">
                 <a class="nav-link font-weight-bolder"  href="/users/">Usuarios</a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link font-weight-bolder"  href="/arts/create/">Agregar una obra de arte</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link font-weight-bolder"  href="/users/create/">Crear usuario</a>
+            </li>
         </ul>
     </nav>`
     

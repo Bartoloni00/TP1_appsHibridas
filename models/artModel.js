@@ -1,4 +1,5 @@
 import { MongoClient, ObjectId } from "mongodb"
+import { UserModel } from "./userModel.js"
 
 const client = new MongoClient('mongodb+srv://bartoloni:bartoloni@cluster0.hrfhf4t.mongodb.net/')
 const db = client.db('AH20232CP1')
@@ -31,16 +32,22 @@ export class ArtModel {
     }
 
     static async createArt(producto){
+        const usuario = await UserModel.getByID({id: producto.owner})
         const newArt = {
             "name": producto.name,
             "description": producto.description,
             "link": producto.link,
-            "img": producto.img,
-            "section":producto.section 
+            "img": producto.img ?producto.img: 'https://picsum.photos/400/225',
+            "section":producto.section,
+            "price": producto.price ? producto.price: 1,
+            "owner":{
+                "_id":usuario._id,
+                "username": usuario.username
+            }
           }
         try {
             const art = await db.collection('arts').insertOne(newArt)
-            newArt._id += art.insertedId 
+            newArt._id = art.insertedId 
             return newArt
         } catch (error) {
             return {"message": `No se ha podido agregar la obra a la base de datos ${error}`}

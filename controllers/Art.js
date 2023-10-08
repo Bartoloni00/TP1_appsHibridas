@@ -1,4 +1,5 @@
 import { ArtModel } from "../models/artModel.js";
+import { UserModel } from "../models/userModel.js";
 import { ArtViews } from "../views/artViews.js";
 
 export class ArtsController {
@@ -16,20 +17,14 @@ export class ArtsController {
         res.send(await ArtViews.getByID({art: await ArtModel.getByID({id: id})}))
     }
 
-    static async create (req, res) {
-        const newArt = {
-            "name": req.body.name,
-            "description": req.body.description,
-            "link": req.body.link,
-            "img": req.body.img,
-            "section":req.body.section,
-            "price": req.body.price ?? 1,
-            "owner": req.body.owner
-          }
+    static async createView(req, res){
+        res.send(await ArtViews.create({users: await UserModel.getAll({filtros: {}})}))
+    }
 
-        ArtModel.createArt(newArt)
+    static async create (req, res) {
+        ArtModel.createArt(req.body)
         .then((createArt)=>{
-            res.status(201).json(createArt)
+            res.status(201).redirect(`/arts/${createArt._id}`)
         })
         .catch(err=>{
             console.log(err)

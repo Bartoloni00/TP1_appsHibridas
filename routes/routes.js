@@ -8,18 +8,18 @@ ArtRoutes.get('/', ArtsController.home)
 
 ArtRoutes.get('/arts/', ArtsController.listAll)
 
-ArtRoutes.get('/arts/:id', ArtsController.getByID)
 
-// ArtRoutes.get('/arts/create', ArtsController.createView)
+ArtRoutes.get('/arts/create', ArtsController.createView)
 ArtRoutes.post('/arts/create', ArtsController.create)
 
-ArtRoutes.delete('/arts/:id', ArtsController.delete)
+ArtRoutes.delete('/arts/delete/:id', ArtsController.delete)
 
 // ArtRoutes.get('/arts/update/:id', ArtsController.updateView)
 ArtRoutes.patch('/arts/update/:id', ArtsController.update)
 
 // ArtRoutes.put('/arts/replace/:id',ArtsController.replaceView)
 ArtRoutes.put('/arts/:id', ArtsController.replace)
+ArtRoutes.get('/arts/:id', ArtsController.getByID)
 
 ArtRoutes.get('/users/', UserController.listAll)
 
