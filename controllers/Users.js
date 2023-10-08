@@ -13,7 +13,14 @@ export class UserController {
     }
     
     static async create(req, res){
-        
+        UserModel.create({newUser: req.body})
+        .then((createUser)=>{
+            res.status(201).json(createUser)
+        })
+        .catch(err=>{
+            console.log(err)
+            res.status(500).json({"message": `Error al intentar agregar una nueva obra de arte: ${err}`})
+        })
     }
     
     static async delete(req, res){

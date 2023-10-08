@@ -20,7 +20,7 @@ ArtRoutes.get('/users/', UserController.listAll)
 
 ArtRoutes.get('/users/:id', UserController.getByID)
 
-ArtRoutes.post('/users/:id', UserController.create)
+ArtRoutes.post('/users/', UserController.create)
 
 ArtRoutes.delete('/users/:id', UserController.delete)
 

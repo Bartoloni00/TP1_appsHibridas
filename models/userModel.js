@@ -23,4 +23,20 @@ export class UserModel {
             return {"message": 'Ocurrio un error al intentar obtener el documento'}
         }
     }
+
+    static async create({newUser}){
+        const createdUser = {
+            "username": newUser.username,
+            "image": newUser.image ?? 'noimage.png',
+            "description": newUser.description ?? 'Sin descripcion',
+            "arts": newUser.arts ?? []
+        }
+        try {
+            const user = await db.collection('users').insertOne(createdUser)
+            createdUser._id += user.insertedId 
+            return createdUser
+        } catch (error) {
+            return {"message": `No se ha podido agregar la obra a la base de datos ${error}`}
+        }
+    }
 }
