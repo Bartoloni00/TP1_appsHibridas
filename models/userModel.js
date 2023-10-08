@@ -39,4 +39,29 @@ export class UserModel {
             return {"message": `No se ha podido agregar la obra a la base de datos ${error}`}
         }
     }
+
+    static async delete({id}){
+        try {
+            return await db.collection('users').deleteOne({_id: new ObjectId(id)})
+        } catch (error) {
+            return {"message": 'Ocurrio un error al intentar eliminar el documento', error}
+        }
+    }
+
+    static async update({id, datos}) {
+        const datosactuales = await this.getByID({id:id})
+
+        const nuevosdatos = {
+            username: datos.username ?? datosactuales.username,
+            image: datos.image ?? datosactuales.image,
+            description: datos.description ?? datosactuales.description,
+            arts: datos.arts ?? datosactuales.arts
+        }
+
+        try { 
+            return await db.collection('users').updateOne({ _id: new ObjectId(id) }, { $set: nuevosdatos })
+        } catch (error) {
+            return {"message": `Ocurrio un error al intentar actualizar el documento`, error}
+        }
+    }
 }

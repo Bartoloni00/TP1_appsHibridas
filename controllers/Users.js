@@ -24,10 +24,25 @@ export class UserController {
     }
     
     static async delete(req, res){
-        
+        const id = req.params.id
+        UserModel.delete({id:id})
+        .then(deletedUser=>{
+            res.status(200).json({"message": `Usuario eliminado satisfactoriamente: ${deletedUser}`})
+        })
+        .catch(err=>{
+            res.status(500).json({"message": `Ocurrio un error al eliminar al usuario: ${err}`})
+        })
     }
 
     static async update(req, res){
-        
+        const id = req.params.id
+
+        UserModel.update({id:id, datos: req.body})
+        .then(EditUser => {
+            res.status(201).json({"message": `Usuario editado exitosamente: ${EditUser}`})
+        })
+        .catch(err=>{
+            res.status(500).json({"message": `Ocurrio un error al editar al usuario: ${err}`})
+        })
     }
 }
