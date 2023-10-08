@@ -5,8 +5,21 @@ const db = client.db('AH20232CP1')
 
 export class ArtModel {
     static async getAll({filtros}) {    
-        console.log(filtros);
-        return await db.collection('arts').find(filtros).toArray()
+        let filtrosArmados = {}
+        if(filtros.section){
+            filtrosArmados.section = filtros.section
+        }
+        if (filtros.min && filtros.max) {
+            filtrosArmados.price = {$gte: parseInt(filtros.min),$lte: parseInt(filtros.max)}
+        }
+        else if (filtros.min) {
+            filtrosArmados.price = {$gte: parseInt(filtros.min)}
+        }
+        else if (filtros.max) {
+            filtrosArmados.price = {$lte: parseInt(filtros.max)}
+        }
+        // console.log(filtrosArmados);
+        return await db.collection('arts').find(filtrosArmados).toArray()
     }
 
     static async getByID({id}){

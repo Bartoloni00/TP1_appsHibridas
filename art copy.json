@@ -93,7 +93,11 @@
       "link": "https://twitter.com/jack/status/20",
       "img": "https://picsum.photos/400/225",
       "section": "artedigital",
-      "price": 1200
+      "price": 1200,
+      "owner":{
+        "_id":"6521da4418effe23503b0c90",
+        "username":"Bartoloni"
+        }
   },
   {
       "name": "Tapiz de Bayeux",

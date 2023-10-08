@@ -1,21 +1,8 @@
-import { ArtModel } from "../models/mongoDB.js";
+import { ArtModel } from "../models/artModel.js";
 
 export class ArtsController {
     static async listAll (req, res) {
-        let filtros = {}
-        if(req.query.section){
-            filtros.section = req.query.section
-        }
-        if (req.query.min && req.query.max) {
-            filtros.price = {$gte: parseInt(req.query.min),$lte: parseInt(req.query.max)}
-        }
-        else if (req.query.min) {
-            filtros.price = {$gte: parseInt(req.query.min)}
-        }
-        else if (req.query.max) {
-            filtros.price = {$lte: parseInt(req.query.max)}
-        }
-        console.log(filtros);
+        let filtros = req.query
         res.send(await ArtModel.getAll({filtros:filtros}))
     }
 
@@ -30,7 +17,9 @@ export class ArtsController {
             "description": req.body.description,
             "link": req.body.link,
             "img": req.body.img,
-            "section":req.body.section 
+            "section":req.body.section,
+            "price": req.body.price ?? 1,
+            "owner": req.body.owner
           }
 
         ArtModel.createArt(newArt)
@@ -57,12 +46,15 @@ export class ArtsController {
 
     static async update (req, res) {
         const id = req.params.id
+        const datosactuales = await ArtModel.getByID({id:id})
         const editArt = {
-            "name": req.body.name,
-            "description": req.body.description,
-            "link": req.body.link ?? 'no link',
-            "img": req.body.img ?? 'no image',
-            "section":req.body.section 
+            "name": req.body.name ?? datosactuales.name,
+            "description": req.body.description ?? datosactuales.description,
+            "link": req.body.link ?? datosactuales.link,
+            "img": req.body.img ?? datosactuales.img,
+            "section":req.body.section ?? datosactuales.section,
+            "price": req.body.price ?? datosactuales.price,
+            "owner": req.body.owner ?? datosactuales.owner ?? 'sin dueño'
           }
         ArtModel.updateArt({id:id,producto:editArt})
           .then(data => res.status(200).json({"message": `Obra de arte editada exitosamente: ${id}`, data}))
@@ -79,7 +71,9 @@ export class ArtsController {
             "description": req.body.description,
             "link": req.body.link ?? 'no link',
             "img": req.body.img ?? 'no image',
-            "section":req.body.section 
+            "section":req.body.section,
+            "price": req.body.price ?? 1,
+            "owner": req.body.owner
           }
 
         ArtModel.replaceArt({id: id, producto: newArt})

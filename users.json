@@ -1,0 +1,33 @@
+[
+    {
+        "username":"Bartoloni",
+        "image":"https://picsum.photos/200/200",
+        "description":"Un tipo re fachero",
+        "arts":[
+            {
+                "_id": "6521af9718effe23503b0c7a",
+                "name": "Mona Lisa",
+                "description": "Retrato de una mujer con una sonrisa enigmática.",
+                "link": "https://www.louvre.fr/en/oeuvre-notices/mona-lisa-portrait-lisa-gherardini-wife-francesco-del-giocondo",
+                "img": "https://picsum.photos/400/225",
+                "section": "Pinturas"
+            },
+            {
+                "_id": "6521af9718effe23503b0c85",
+                "name": "The First Ever Tweet",
+                "description": "La primera publicación en Twitter, creada por el cofundador de Twitter.",
+                "link": "https://twitter.com/jack/status/20",
+                "img": "https://picsum.photos/400/225",
+                "section": "Arte Digital"
+            },
+            {
+                "_id": "6521af9718effe23503b0c86",
+                "name": "Tapiz de Bayeux",
+                "description": "Tapiz bordado que narra los eventos que llevaron a la conquista normanda de Inglaterra en el siglo XI.",
+                "link": "http://www.tapisserie-bayeux.fr/en/la-tapisserie/bayeux-tapestry",
+                "img": "https://picsum.photos/400/225",
+                "section": "Artesanías"
+            }
+        ]
+    }
+]
