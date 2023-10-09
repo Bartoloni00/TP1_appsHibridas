@@ -29,7 +29,7 @@ export class UserModel {
         const art = await ArtModel.getByID({id: newUser.arts})
         const createdUser = {
             "username": newUser.username,
-            "image": newUser.image ?? 'noimage.png',
+            "image": newUser.image ? newUser.image : 'https://picsum.photos/200/200',
             "description": newUser.description ?? 'Sin descripcion',
             "arts": [
                 {
@@ -62,12 +62,20 @@ export class UserModel {
 
     static async update({id, datos}) {
         const datosactuales = await this.getByID({id:id})
+        const arts = await ArtModel.getByID({id: datos.arts})
 
         const nuevosdatos = {
             username: datos.username ?? datosactuales.username,
-            image: datos.image ?? datosactuales.image,
+            image: datos.image ? datos.image : datosactuales.image,
             description: datos.description ?? datosactuales.description,
-            arts: datos.arts ?? datosactuales.arts
+            arts: [{       
+                "_id":arts._id,
+                "name":arts.name,
+                "description":arts.description,
+                "link":arts.link,
+                "img":arts.img,
+                "section": arts.section,
+            }] ?? datosactuales.arts
         }
 
         try { 

@@ -5,13 +5,13 @@ const UserRoutes = express.Router()
 
 UserRoutes.get('/users/', UserController.listAll)
 
+UserRoutes.get('/users/create', UserController.createView)
+UserRoutes.post('/users/create', UserController.create)
+
+UserRoutes.get('/users/delete/:id', UserController.deleteView)
+UserRoutes.post('/users/delete/:id', UserController.delete)
+
+UserRoutes.get('/users/update/:id', UserController.updateView)
+UserRoutes.post('/users/update/:id', UserController.update)
 UserRoutes.get('/users/:id', UserController.getByID)
-
-// UserRoutes.get('/users/create', UserController.createView)
-UserRoutes.post('/users/', UserController.create)
-
-UserRoutes.post('/users/:id', UserController.delete)
-
-// UserRoutes.get('/users/create', UserController.updateView)
-UserRoutes.post('/users/:id', UserController.update)
 export default UserRoutes
