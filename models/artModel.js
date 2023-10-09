@@ -56,7 +56,8 @@ export class ArtModel {
 
     static async deleteArt({id}) {
         try {
-            return await db.collection('arts').deleteOne({_id: new ObjectId(id)})
+            await db.collection('arts').deleteOne({_id: new ObjectId(id)})
+            return id
         } catch (error) {
             return {"message": 'Ocurrio un error al intentar eliminar el documento'}
         }

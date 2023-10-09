@@ -61,7 +61,7 @@ export class ArtViews {
         let html = `
         <nav class="nav nav-pills flex-column flex-sm-row mb-3">
             <a class="flex-sm-fill text-sm-center nav-link active" aria-current="page" href="/arts/update/${art._id}">Editar</a>
-            <form action="/arts/delete/${art._id}" method="delete">
+            <form action="/arts/delete/${art._id}" method="post">
                 <button type:"submit" class="flex-sm-fill text-sm-center nav-link">eliminar</button>
             </form>
         </nav>

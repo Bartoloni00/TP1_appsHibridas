@@ -1,4 +1,5 @@
 import { MongoClient, ObjectId } from "mongodb"
+import { ArtModel } from "../models/artModel.js";
 
 const client = new MongoClient('mongodb+srv://bartoloni:bartoloni@cluster0.hrfhf4t.mongodb.net/')
 const db = client.db('AH20232CP1')
@@ -25,15 +26,25 @@ export class UserModel {
     }
 
     static async create({newUser}){
+        const art = await ArtModel.getByID({id: newUser.arts})
         const createdUser = {
             "username": newUser.username,
             "image": newUser.image ?? 'noimage.png',
             "description": newUser.description ?? 'Sin descripcion',
-            "arts": newUser.arts ?? []
+            "arts": [
+                {
+                    "_id": art._id,
+                    "name": art.name,
+                    "description": art.description,
+                    "link": art.link,
+                    "img": art.img,
+                    "section": art.section
+                  }
+            ] ?? []
         }
         try {
             const user = await db.collection('users').insertOne(createdUser)
-            createdUser._id += user.insertedId 
+            createdUser._id = user.insertedId 
             return createdUser
         } catch (error) {
             return {"message": `No se ha podido agregar la obra a la base de datos ${error}`}
@@ -42,7 +53,8 @@ export class UserModel {
 
     static async delete({id}){
         try {
-            return await db.collection('users').deleteOne({_id: new ObjectId(id)})
+            await db.collection('users').deleteOne({_id: new ObjectId(id)})
+            return id
         } catch (error) {
             return {"message": 'Ocurrio un error al intentar eliminar el documento', error}
         }

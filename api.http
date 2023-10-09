@@ -17,13 +17,15 @@ GET http://localhost:3333/arts/651d35bce6190ce46a9a0264
 GET http://localhost:3333/arts/section/pinturas
 
 ### Agregar una nueva obra de arte
-POST http://localhost:3333/arts
+POST http://localhost:3333/api/arts/create
 Content-Type: application/json
 
 {
-  "name": "Bartoloni creado",
-  "description": "soy una obra de arte.",
-  "link": "https://www.github.com/Bartoloni00",
-  "img": "https://picsum.photos/400/225",
-  "section": "esculturas"
-}
+            "name": "Producto desde la api",
+            "description":"Producto desde la api",
+            "link": "www.github.com/Bartoloni00",
+            "img": ,
+            "section": "pinturas",
+            "price": "1234",
+            "owner":"6521da4418effe23503b0c90"   
+          }
