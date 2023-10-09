@@ -33,52 +33,43 @@ export class ArtsController {
         
     }
 
+    static async deleteView (req, res) {
+        const id = req.params.id
+
+        res.send(await ArtViews.delete({art: await ArtModel.getByID({id: id})}))
+    }
+
     static async delete (req, res) {
         const id = req.params.id
         ArtModel.deleteArt({id:id})
         .then(deletedArt=>{
-            res.status(200).json({"message": `Obra de arte eliminada satisfactoriamente: ${deletedArt}`})
+            res.status(200).redirect(`/arts`)
         })
         .catch(err=>{
             res.status(500).json({"message": `Ocurrio un error al eliminar la obra de arte: ${err}`})
         })
     }
 
+    static async updateView (req, res) {
+        const id = req.params.id
+
+        res.send(await ArtViews.update({datos: await ArtModel.getByID({id: id}), users: await UserModel.getAll({filtros:{}})}))
+    }
+
     static async update (req, res) {
         const id = req.params.id
-        const datosactuales = await ArtModel.getByID({id:id})
-        const editArt = {
-            "name": req.body.name ?? datosactuales.name,
-            "description": req.body.description ?? datosactuales.description,
-            "link": req.body.link ?? datosactuales.link,
-            "img": req.body.img ?? datosactuales.img,
-            "section":req.body.section ?? datosactuales.section,
-            "price": req.body.price ?? datosactuales.price,
-            "owner": req.body.owner ?? datosactuales.owner ?? 'sin dueño'
-          }
-        ArtModel.updateArt({id:id,producto:editArt})
-          .then(data => res.status(200).json({"message": `Obra de arte editada exitosamente: ${id}`, data}))
+        
+        ArtModel.updateArt({
+            id:id,
+            producto:req.body,
+            datosactuales: await ArtModel.getByID({id:id})
+            
+        })
+          .then(() => res.status(200).redirect(`/arts/${id}`))
           .catch(err => {
             console.log(err)
             res.json({"message": `ocurrio un error al editar la obra`, err})
           })
-    }
-
-    static async replace (req, res) {
-        const id = req.params.id
-        const newArt = {
-            "name": req.body.name,
-            "description": req.body.description,
-            "link": req.body.link ?? 'no link',
-            "img": req.body.img ?? 'no image',
-            "section":req.body.section,
-            "price": req.body.price ?? 1,
-            "owner": req.body.owner
-          }
-
-        ArtModel.replaceArt({id: id, producto: newArt})
-          .then(data => res.status(200).json({"message": `Obra de arte remplazada satisfactoriamente: ${id}`, data}))
-          .catch(err=>res.send(err))
     }
 }
 

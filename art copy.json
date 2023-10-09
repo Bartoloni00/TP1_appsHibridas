@@ -5,7 +5,11 @@
       "link": "https://www.louvre.fr/en/oeuvre-notices/mona-lisa-portrait-lisa-gherardini-wife-francesco-del-giocondo",
       "img": "https://picsum.photos/400/225",
       "section": "pinturas",
-      "price": 80000
+      "price": 80000,
+      "owner":{
+        "_id":"6521da4418effe23503b0c90",
+        "username":"Bartoloni"
+        }
   },
   {
       "name": "La Noche Estrellada",
@@ -13,7 +17,11 @@
       "link": "https://www.moma.org/collection/works/79802",
       "img": "https://picsum.photos/400/225",
       "section": "pinturas",
-      "price": 60000
+      "price": 60000,
+      "owner":{
+        "_id":"6521da4418effe23503b0c90",
+        "username":"Bartoloni"
+        }
   },
   {
       "name": "Guernica",
@@ -21,7 +29,11 @@
       "link": "https://www.museoreinasofia.es/en/collection/artwork/guernica",
       "img": "https://picsum.photos/400/225",
       "section": "pinturas",
-      "price": 70000
+      "price": 70000,
+      "owner":{
+        "_id":"6521da4418effe23503b0c90",
+        "username":"Bartoloni"
+        }
   },
   {
       "name": "David",
@@ -29,7 +41,11 @@
       "link": "https://www.galleriaaccademiafirenze.beniculturali.it/en/david/",
       "img": "https://picsum.photos/400/225",
       "section": "esculturas",
-      "price": 50000
+      "price": 50000,
+      "owner":{
+        "_id":"6521da4418effe23503b0c90",
+        "username":"Bartoloni"
+        }
   },
   {
       "name": "El Pensador",
@@ -37,7 +53,11 @@
       "link": "https://www.musee-rodin.fr/en/collections/sculptures/thinker",
       "img": "https://picsum.photos/400/225",
       "section": "esculturas",
-      "price": 45000
+      "price": 45000,
+      "owner":{
+        "_id":"6521da4418effe23503b0c90",
+        "username":"Bartoloni"
+        }
   },
   {
       "name": "Venus de Milo",
@@ -45,7 +65,11 @@
       "link": "https://www.louvre.fr/en/oeuvre-notices/venus-de-milo",
       "img": "https://picsum.photos/400/225",
       "section": "esculturas",
-      "price": 55000
+      "price": 55000,
+      "owner":{
+        "_id":"6521da4418effe23503b0c90",
+        "username":"Bartoloni"
+        }
   },
   {
       "name": "Migrant Mother",
@@ -53,7 +77,11 @@
       "link": "https://www.loc.gov/pictures/item/2017760024/",
       "img": "https://picsum.photos/400/225",
       "section": "fotografias",
-      "price": 3000
+      "price": 3000,
+      "owner":{
+        "_id":"6521da4418effe23503b0c90",
+        "username":"Bartoloni"
+        }
   },
   {
       "name": "Lunch Atop a Skyscraper",
@@ -61,7 +89,11 @@
       "link": "https://www.corbisimages.com/stock-photo/rights-managed/42-45207575/lunch-atop-a-skyscraper-1932",
       "img": "https://picsum.photos/400/225",
       "section": "fotografias",
-      "price": 2500
+      "price": 2500,
+      "owner":{
+        "_id":"6521da4418effe23503b0c90",
+        "username":"Bartoloni"
+        }
   },
   {
       "name": "Afghan Girl",
@@ -69,7 +101,11 @@
       "link": "https://www.nationalgeographic.com/magazine/national-geographic-magazine-100-best-pictures-of-the-year/article.html",
       "img": "https://picsum.photos/400/225",
       "section": "fotografias",
-      "price": 2000
+      "price": 2000,
+      "owner":{
+        "_id":"6521da4418effe23503b0c90",
+        "username":"Bartoloni"
+        }
   },
   {
       "name": "Dípticos",
@@ -77,7 +113,11 @@
       "link": "https://www.beeple-collect.com/",
       "img": "https://picsum.photos/400/225",
       "section": "artedigital",
-      "price": 1500
+      "price": 1500,
+      "owner":{
+        "_id":"6521da4418effe23503b0c90",
+        "username":"Bartoloni"
+        }
   },
   {
       "name": "CryptoPunks",
@@ -85,7 +125,11 @@
       "link": "https://www.larvalabs.com/cryptopunks",
       "img": "https://picsum.photos/400/225",
       "section": "artedigital",
-      "price": 1800
+      "price": 1800,
+      "owner":{
+        "_id":"6521da4418effe23503b0c90",
+        "username":"Bartoloni"
+        }
   },
   {
       "name": "The First Ever Tweet",
@@ -105,7 +149,11 @@
       "link": "http://www.tapisserie-bayeux.fr/en/la-tapisserie/bayeux-tapestry",
       "img": "https://picsum.photos/400/225",
       "section": "artesanias",
-      "price": 3500
+      "price": 3500,
+      "owner":{
+        "_id":"6521da4418effe23503b0c90",
+        "username":"Bartoloni"
+        }
   },
   {
       "name": "Quilts de Gee's Bend",
@@ -113,7 +161,11 @@
       "link": "https://www.soulsgrowndeep.org/gees-bend-quiltmakers",
       "img": "https://picsum.photos/400/225",
       "section": "artesanias",
-      "price": 3000
+      "price": 3000,
+      "owner":{
+        "_id":"6521da4418effe23503b0c90",
+        "username":"Bartoloni"
+        }
   },
   {
       "name": "Arte en Papel",
@@ -121,6 +173,10 @@
       "link": "http://www.artyulia.com/",
       "img": "https://picsum.photos/400/225",
       "section": "artesanias",
-      "price": 2800
+      "price": 2800,
+      "owner":{
+        "_id":"6521da4418effe23503b0c90",
+        "username":"Bartoloni"
+        }
   }
 ]

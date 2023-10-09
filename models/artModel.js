@@ -64,18 +64,51 @@ export class ArtModel {
     }
 
     static async replaceArt({id,producto}){
+        const usuario = await UserModel.getByID({id: producto.owner})
+        const replaceArt = {
+            "name": producto.name,
+            "description": producto.description,
+            "link": producto.link ?? 'no link',
+            "img": producto.img ? producto.img: 'https://picsum.photos/400/225',
+            "section":producto.section,
+            "price": producto.price ?? 1,
+            "owner":{
+                "_id":usuario._id,
+                "username": usuario.username
+            }
+          }
+
         try {
-            return db.collection('arts').replaceOne({_id: new ObjectId(id)}, producto)
+            return db.collection('arts').replaceOne({_id: new ObjectId(id)}, replaceArt)
         } catch (error) {
             return {"message": `Ocurrio un error al intentar remplazar el documento`}
         }        
     }
 
-    static async updateArt({id,producto}){
-        try { 
-            return await db.collection('arts').updateOne({ _id: new ObjectId(id) }, { $set: producto })
+    static async updateArt({ id, producto, datosactuales }) {
+        try {
+            let usuario = await UserModel.getByID({ id: producto.owner });
+            usuario = usuario || null;
+    
+            const editArt = {
+                "name": producto.name ?? datosactuales.name,
+                "description": producto.description ?? datosactuales.description,
+                "link": producto.link ?? datosactuales.link,
+                "img": producto.img ? producto.img : datosactuales.img ? datosactuales.img : 'https://picsum.photos/400/225',
+                "section": producto.section ?? datosactuales.section,
+                "price": producto.price ?? datosactuales.price,
+                "owner": {
+                    "_id": usuario ? usuario._id : '6521da4418effe23503b0c90',
+                    "username": usuario ? usuario.username : 'Bartoloni'
+                }
+            };
+    
+            const result = await db.collection('arts').updateOne({ _id: new ObjectId(id) }, { $set: editArt });
+    
+            return result;
         } catch (error) {
-            return {"message": `Ocurrio un error al intentar actualizar el documento`}
+            return { "message": `Ocurrió un error al intentar actualizar el documento` };
         }
     }
+    
 }
