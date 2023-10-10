@@ -64,10 +64,10 @@ export class UserModel {
 
     static async update({ id, datos }) {
         const datosactuales = await this.getByID({ id: id });
+        console.log('userModel',datos.arts);
     
         const artsPromises = datos.arts.map(artId => ArtModel.getByID({ id: artId }));
         const arts = await Promise.all(artsPromises);
-    
         const nuevosdatos = {
             username: datos.username ?? datosactuales.username,
             image: datos.image ? datos.image : datosactuales.image,

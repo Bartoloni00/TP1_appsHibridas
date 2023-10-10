@@ -54,14 +54,38 @@ export class ArtModel {
         }
     }
 
-    static async deleteArt({id}) {
+    static async deleteArt({ id }) {
         try {
-            await db.collection('arts').deleteOne({_id: new ObjectId(id)})
-            return id
+            const art = await this.getByID({ id: id });
+    
+            // Verifica si la propiedad 'owner' en el objeto 'art' tiene un valor definido
+            if (art.owner && art.owner._id) {
+                const ownerId = art.owner._id;
+    
+                // Eliminar la obra de arte de la colección 'arts'
+                await db.collection('arts').deleteOne({ _id: new ObjectId(id) });
+    
+                // Actualizar el usuario dueño de la obra
+                const user = await UserModel.getByID({ id: ownerId });
+                if (user) {
+                    // Crea un nuevo array que contenga solo las IDs de las obras de arte
+                    const nuevoArray = user.arts.filter(userArt => userArt._id.toString() !== id).map(userArt => userArt._id);
+                    
+                    // Actualiza el usuario con el nuevo array de IDs
+                    await UserModel.update({ id: ownerId, datos: { "arts": nuevoArray } });
+                }
+    
+                return id;
+            } else {
+                throw new Error('La propiedad "owner" en el objeto de arte es undefined o no tiene un _id definido.');
+            }
         } catch (error) {
-            return {"message": 'Ocurrio un error al intentar eliminar el documento'}
+            console.error(error); // Registra cualquier error en la consola para debugging
+            throw new Error('Ocurrió un error al intentar eliminar el documento');
         }
     }
+    
+    
 
     static async replaceArt({id,producto}){
         const usuario = await UserModel.getByID({id: producto.owner})
