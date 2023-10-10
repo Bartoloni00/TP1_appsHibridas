@@ -103,7 +103,7 @@ export class userViews{
                 </div>
                 <div class="mb-3 row">
                     <div class="col-sm-10 offset-sm-2">
-                        <button type="submit" class="btn btn-primary">Enviar</button>
+                        <button type="submit" class="btn btn-success">Enviar</button>
                     </div>
                 </div>
             </form>

@@ -25,31 +25,33 @@ export class UserModel {
         }
     }
 
-    static async create({newUser}){
-        const art = await ArtModel.getByID({id: newUser.arts})
+    static async create({ newUser }) {
+        const artsPromises = newUser.arts.map(artId => ArtModel.getByID({ id: artId }));
+        const arts = await Promise.all(artsPromises);
+    
         const createdUser = {
             "username": newUser.username,
             "image": newUser.image ? newUser.image : 'https://picsum.photos/200/200',
             "description": newUser.description ?? 'Sin descripcion',
-            "arts": [
-                {
-                    "_id": art._id,
-                    "name": art.name,
-                    "description": art.description,
-                    "link": art.link,
-                    "img": art.img,
-                    "section": art.section
-                  }
-            ] ?? []
-        }
+            "arts": arts.map(art => ({
+                "_id": art._id,
+                "name": art.name,
+                "description": art.description,
+                "link": art.link,
+                "img": art.img,
+                "section": art.section
+            })) || []
+        };
+    
         try {
-            const user = await db.collection('users').insertOne(createdUser)
-            createdUser._id = user.insertedId 
-            return createdUser
+            const user = await db.collection('users').insertOne(createdUser);
+            createdUser._id = user.insertedId;
+            return createdUser;
         } catch (error) {
-            return {"message": `No se ha podido agregar la obra a la base de datos ${error}`}
+            return {"message": `No se ha podido agregar el usuario a la base de datos: ${error}`};
         }
     }
+    
 
     static async delete({id}){
         try {
@@ -60,28 +62,32 @@ export class UserModel {
         }
     }
 
-    static async update({id, datos}) {
-        const datosactuales = await this.getByID({id:id})
-        const arts = await ArtModel.getByID({id: datos.arts})
-
+    static async update({ id, datos }) {
+        const datosactuales = await this.getByID({ id: id });
+    
+        const artsPromises = datos.arts.map(artId => ArtModel.getByID({ id: artId }));
+        const arts = await Promise.all(artsPromises);
+    
         const nuevosdatos = {
             username: datos.username ?? datosactuales.username,
             image: datos.image ? datos.image : datosactuales.image,
             description: datos.description ?? datosactuales.description,
-            arts: [{       
-                "_id":arts._id,
-                "name":arts.name,
-                "description":arts.description,
-                "link":arts.link,
-                "img":arts.img,
-                "section": arts.section,
-            }] ?? datosactuales.arts
-        }
-
-        try { 
-            return await db.collection('users').updateOne({ _id: new ObjectId(id) }, { $set: nuevosdatos })
+            arts: arts.map(art => ({
+                "_id": art._id,
+                "name": art.name,
+                "description": art.description,
+                "link": art.link,
+                "img": art.img,
+                "section": art.section,
+            })) || datosactuales.arts
+        };
+    
+        try {
+            await db.collection('users').updateOne({ _id: new ObjectId(id) }, { $set: nuevosdatos })
+            return id
         } catch (error) {
-            return {"message": `Ocurrio un error al intentar actualizar el documento`, error}
+            return { "message": `Ocurrió un error al intentar actualizar el documento`, error };
         }
     }
+    
 }

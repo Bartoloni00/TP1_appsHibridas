@@ -59,7 +59,7 @@ export class UserController {
         UserModel.update({id:id, datos: req.body})
         .then(EditUser => {
             console.log(EditUser);
-            res.status(201).redirect(`/users/${EditUser._id}`)
+            res.status(201).redirect(`/users/${EditUser}`)
         })
         .catch(err=>{
             res.status(500).json({"message": `Ocurrio un error al editar al usuario: ${err}`})
