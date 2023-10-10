@@ -3,14 +3,14 @@ import { UserController } from '../controllers/UsersApiController.js'
 
 const ApiUserRoutes = express.Router()
 
-ApiUserRoutes.get('/users/', UserController.listAll)// listo
+ApiUserRoutes.get('/users/', UserController.listAll)
 
-ApiUserRoutes.get('/users/:id', UserController.getByID)// listo
+ApiUserRoutes.get('/users/:id', UserController.getByID)
 
-ApiUserRoutes.post('/users/create', UserController.create)// listo
+ApiUserRoutes.post('/users/', UserController.create)
 
-ApiUserRoutes.delete('/users/delete/:id', UserController.delete)// listo
+ApiUserRoutes.delete('/users/:id', UserController.delete)
 
-ApiUserRoutes.patch('/users/update/:id', UserController.update)// listo
+ApiUserRoutes.patch('/users/:id', UserController.update)
 
 export default ApiUserRoutes

@@ -26,24 +26,33 @@ export class UserModel {
     }
 
     static async create({ newUser }) {
-        const artsPromises = newUser.arts.map(artId => ArtModel.getByID({ id: artId }));
-        const arts = await Promise.all(artsPromises);
-    
-        const createdUser = {
-            "username": newUser.username,
-            "image": newUser.image ? newUser.image : 'https://picsum.photos/200/200',
-            "description": newUser.description ?? 'Sin descripcion',
-            "arts": arts.map(art => ({
-                "_id": art._id,
-                "name": art.name,
-                "description": art.description,
-                "link": art.link,
-                "img": art.img,
-                "section": art.section
-            })) || []
-        };
-    
         try {
+            const artsPromises = newUser.arts.map(artId => ArtModel.getByID({ id: artId }));
+            const arts = await Promise.all(artsPromises);
+    
+            const obrasDeArte = arts.map(art => {
+                if (art) {
+                    return {
+                        "_id": art._id,
+                        "name": art.name,
+                        "description": art.description,
+                        "link": art.link,
+                        "img": art.img,
+                        "section": art.section
+                    };
+                } else {
+                    // Tratar el caso donde art es null o undefined
+                    return null;
+                }
+            }).filter(art => art !== null); // Filtrar elementos null después de mapear
+    
+            const createdUser = {
+                "username": newUser.username,
+                "image": newUser.image ? newUser.image : 'https://picsum.photos/200/200',
+                "description": newUser.description ?? 'Sin descripcion',
+                "arts": obrasDeArte || []
+            };
+    
             const user = await db.collection('users').insertOne(createdUser);
             createdUser._id = user.insertedId;
             return createdUser;
@@ -51,6 +60,8 @@ export class UserModel {
             return {"message": `No se ha podido agregar el usuario a la base de datos: ${error}`};
         }
     }
+    
+    
     
 
     static async delete({id}){
@@ -63,31 +74,39 @@ export class UserModel {
     }
 
     static async update({ id, datos }) {
-        const datosactuales = await this.getByID({ id: id });
-        console.log('userModel',datos.arts);
-    
-        const artsPromises = datos.arts.map(artId => ArtModel.getByID({ id: artId }));
-        const arts = await Promise.all(artsPromises);
-        const nuevosdatos = {
-            username: datos.username ?? datosactuales.username,
-            image: datos.image ? datos.image : datosactuales.image,
-            description: datos.description ?? datosactuales.description,
-            arts: arts.map(art => ({
-                "_id": art._id,
-                "name": art.name,
-                "description": art.description,
-                "link": art.link,
-                "img": art.img,
-                "section": art.section,
-            })) || datosactuales.arts
-        };
-    
         try {
-            await db.collection('users').updateOne({ _id: new ObjectId(id) }, { $set: nuevosdatos })
-            return id
+            const datosactuales = await this.getByID({ id: id });
+            console.log('userModel', datos.arts);
+    
+            const artsPromises = datos.arts.map(artId => ArtModel.getByID({ id: artId }));
+            const arts = await Promise.all(artsPromises);
+    
+            const nuevosdatos = {
+                username: datos.username ?? datosactuales.username,
+                image: datos.image ? datos.image : datosactuales.image,
+                description: datos.description ?? datosactuales.description,
+                arts: arts.map(art => {
+                    if (art) {
+                        return {
+                            "_id": art._id,
+                            "name": art.name,
+                            "description": art.description,
+                            "link": art.link,
+                            "img": art.img,
+                            "section": art.section
+                        };
+                    } else {
+                        return null;
+                    }
+                }).filter(art => art !== null) || datosactuales.arts
+            };
+    
+            await db.collection('users').updateOne({ _id: new ObjectId(id) }, { $set: nuevosdatos });
+            return id;
         } catch (error) {
             return { "message": `Ocurrió un error al intentar actualizar el documento`, error };
         }
     }
+    
     
 }

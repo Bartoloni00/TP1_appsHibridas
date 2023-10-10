@@ -29,5 +29,20 @@
                 "section": "Artesanías"
             }
         ]
+    },{
+        "username":"Messi",
+        "image":"https://picsum.photos/200/200",
+        "description":"Es messi",
+        "arts":[
+            {
+                "_id": "652458b4d9c7a6196bd39a2c",
+                "name": "Guernica",
+                "description": "Pintura mural que representa el bombardeo de Guernica durante la Guerra Civil Española.",
+                "link": "https://www.museoreinasofia.es/en/collection/artwork/guernica",
+                "img": "https://picsum.photos/400/225",
+                "section": "pinturas",
+                "price": 70000
+              }
+        ]
     }
 ]

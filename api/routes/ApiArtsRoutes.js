@@ -4,17 +4,17 @@ import ApiUserRoutes from '../routes/ApiUserRoutes.js'
 
 const ApiArtRoutes = express.Router()
 
-ApiArtRoutes.get('/arts/', ArtsController.listAll)// listo
+ApiArtRoutes.get('/arts/', ArtsController.listAll)
 
-ApiArtRoutes.post('/arts/create', ArtsController.create)// listo
+ApiArtRoutes.post('/arts/', ArtsController.create)
 
-ApiArtRoutes.delete('/arts/delete/:id', ArtsController.delete)// listo
+ApiArtRoutes.delete('/arts/:id', ArtsController.delete)
 
-ApiArtRoutes.patch('/arts/update/:id', ArtsController.update)// listo
+ApiArtRoutes.patch('/arts/:id', ArtsController.update)
 
-ApiArtRoutes.put('/arts/replace/:id', ArtsController.replace)// listo
+ApiArtRoutes.put('/arts/:id', ArtsController.replace)
 
-ApiArtRoutes.get('/arts/:id', ArtsController.getByID)// listo
+ApiArtRoutes.get('/arts/:id', ArtsController.getByID)
 
 ApiArtRoutes.use(ApiUserRoutes)
 export default ApiArtRoutes
